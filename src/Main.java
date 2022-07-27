@@ -23,14 +23,8 @@ public class Main {
             System.out.println("Длина цикла "+getCycleLength(cycleBegin)+" элементов.");
         } else {
             System.out.println("Циклов нет.");
-
-            System.out.println();
             System.out.println("Исходный массив:");
-            for(node = head; node != null; node = node.next) {
-                System.out.print(node.value+" ");
-            }
-
-            System.out.println();
+            System.out.println(head);
             int k = 3;
             node = findElement(head,k);
             if(node != null) {
@@ -38,15 +32,15 @@ public class Main {
             } else {
                 System.out.println("Нет такого элемента.");
             }
-
-            System.out.println();
             node = head;
             head = rotate(head.next,head);
             node.next = null;
             System.out.println("Перевернутый массив:");
-            for (node = head; node != null; node = node.next) {
-                System.out.print(node.value+" ");
-            }
+
+            System.out.println(head);
+//            for (node = head; node != null; node = node.next) {
+//                System.out.print(node.value+" ");
+//            }
         }
     }
 
@@ -112,7 +106,17 @@ public class Main {
 
     private static class Node<T> {
         T value;
-        Node next;
+        Node<T> next;
+
+        @Override
+        public String toString() {
+            String str = "[ ";
+            for(Node<T> tmp = this; tmp != null; tmp = tmp.next) {
+                str += tmp.value + " ";
+            }
+            str += "]";
+            return str;
+        }
 
         public Node(T value) {
             this.value = value;
