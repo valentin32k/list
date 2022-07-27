@@ -6,14 +6,14 @@ public class Main {
         node = node.add(3);
         node = node.add(4);
         node = node.add(5);
-//        Node<Integer> cycle = node;
+        Node<Integer> cycle = node;
         node = node.add(6);
         node = node.add(7);
         node = node.add(8);
         node = node.add(9);
         node = node.add(10);
         node = node.add(11);
-//        node.next = cycle;
+        node.next = cycle;
 
         node = isCycle(head);
         if(node != null) {
@@ -24,7 +24,11 @@ public class Main {
         } else {
             System.out.println("Циклов нет.");
             System.out.println("Исходный массив:");
-            System.out.println(head);
+            for(node = head; node != null; node = node.next) {
+                System.out.print(node.value+" ");
+            }
+
+            System.out.println();
             int k = 3;
             node = findElement(head,k);
             if(node != null) {
@@ -37,10 +41,9 @@ public class Main {
             node.next = null;
             System.out.println("Перевернутый массив:");
 
-            System.out.println(head);
-//            for (node = head; node != null; node = node.next) {
-//                System.out.print(node.value+" ");
-//            }
+            for(node = head; node != null; node = node.next) {
+                System.out.print(node.value+" ");
+            }
         }
     }
 
@@ -107,16 +110,6 @@ public class Main {
     private static class Node<T> {
         T value;
         Node<T> next;
-
-        @Override
-        public String toString() {
-            String str = "[ ";
-            for(Node<T> tmp = this; tmp != null; tmp = tmp.next) {
-                str += tmp.value + " ";
-            }
-            str += "]";
-            return str;
-        }
 
         public Node(T value) {
             this.value = value;
